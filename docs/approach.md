@@ -117,7 +117,7 @@ I give myself a time limit of 4 hours for coding.
 
 #### What I will assume for now
 
-An app Shiphol group provides to passengers. (BtoC) My assumption is based on the fact that `colors.css` has colors named `schiphol-blue`.
+An app Shiphol group provides to passengers. (BtoC) My assumption is based on the fact that `colors.css` has colors named `schiphol-blue` + the fact that the interview is with the Commercial Platform division making it likely to be an app for clients.
 
 - focus on strong UI to appeal to passengers while staying true to the Schiphol theme
 - focus on low cost, simplicity due to time constraint of this app.
@@ -143,13 +143,14 @@ For now, I will implement basic SEO practices only:
 I will also implement basic accesibility practicies:
 
 - be wary of ARIA labels
+- add Google Analtics tag to monitor users and be able to reflect later on if we are indeed reaching our target audience
 
 ### Back End
 
 #### Questions
 
 - This is dependent on the target user, but what kind of authentiction would be suitable? If it is an app we sell oAuth might be more suitable since users can easily acces it with their already exsisting Goolge account etc. If it is an internal product, we will likely prefer an internal server to ensure security. In some cases, it might not even need authentication.
-- What is the expected loading time of 1 API call? Would it be possible to get multiple airports at once?
+- What is the expected loading time of 1 API call? Would it be possible to get the data of multiple airports at once?
 - Wouldn't it be better to sort in the BE? Oftentimes this is more effecient and provides a better user experience, but of course this depends on the specific use case.
 - Would it be possible to only ask for a specific batch of the API? So a REST API pagination approach with `limit` and `offset`?
 - Would it be possible to add more details to the flight information? Think of coordination info etc. with which we might enhance the UI and UX.
@@ -171,7 +172,7 @@ I will also implement basic accesibility practicies:
 
 - Focus on the current [main browsers](https://gs.statcounter.com/browser-market-share/), Google Chrome, Safari, Edge
 - Mobile first approach to ensure accessibility for travelers on the go.
-- Using TailwindCSS to support efficient, responsive design without limiting custom CSS adjustments.
+- Using TailwindCSS to support efficient, responsive design without limiting custom CSS adjustments. I realize that the assignment asks for to limit the usage of plugins, but I think the usage of TailwindCSS can be justified as it is a lightweight, highly customizable plugin that can greatly improve the development speed whilst maintaining a strong focus on UI.
 
 ### State management
 
@@ -202,7 +203,7 @@ Before writing the actual clients, I would write unit tests to go with them and 
 These tests would be coded and run in Jest.
 
 ```bash
-FlightClient
+FlightClient -> handles all API calls to `/flights`.
 ```
 
 ### Intergration Testing
