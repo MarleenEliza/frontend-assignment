@@ -201,8 +201,10 @@ I will not implement that in this app due to the time limit and scale, but norma
 
 - integrating real BE
 - adding e2e testing
+- added more details to enhacne the UX such as the searchResults dissapearing once the focus is gone from the input component.
+- prove a better pc UI
 - adding more elborate accesibility testing
 - adding a more specific UI UX that statisfies the Schiphol Group standards and regulations
 - add error handling; fallbacks for when components cannot render to generic Error components, error page for bigger errors, error UI for user to show auth related issues etc.
 - adding more features like extensive sorting, filtering, or a map with backend coordinates, based on business needs.
-  F
+- Once I was almost finished, I realized that I might have misunderstood the assignment a bit; I have made an **airport** finder which shows a maximum of 5 airports listed when searching. Rereading the assignment, I see that it should have been **flights** that were displayed instead. I apologize for the confusion, I do not have time to adjust this anymore, but in a real world project, this misunderstanding would have been prevented due to my initial design and goal questions. I would have ensured before coding, that I was in fact creating the right solution for this specific project.
