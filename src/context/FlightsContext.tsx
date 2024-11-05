@@ -12,11 +12,11 @@ import { Flight, GetFlightsResponse } from "types/flightsApiTypes";
  * - can set or remove chosen airport as string.
  * - can fetch data of flights.json which will be treated as a mock API.
  * - can return filtered flight data based on user input airport.
- * - can sort data of fetched flights by date or estiamted time. (either asc or desc)
+ * - can sort data of fetched flights by date or estimated time. (either asc or desc)
  */
 interface FlightsContextType {
   flightResults: Flight[];
-  searchResults: Flight[];
+  searchResults: string[];
   chosenAirport: string | null;
   setChosenAirport: (airport: string) => void;
   searchInput: string;
@@ -45,7 +45,7 @@ export const FlightsProvider: React.FC<FlightsProviderProps> = ({
 }) => {
   const [flights, setFlights] = useState<Flight[]>([]);
   const [searchInput, setSearchInput] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<Flight[]>([]);
+  const [searchResults, setSearchResults] = useState<string[]>([]);
   const [flightResults, setFlightResults] = useState<Flight[]>([]);
   const [chosenAirport, setChosenAirport] = useState<string | null>(null);
 
@@ -57,7 +57,7 @@ export const FlightsProvider: React.FC<FlightsProviderProps> = ({
       const response = await fetch("/data/flights.json");
       const data: GetFlightsResponse = await response.json();
       setFlights(data.flights);
-      console.log("succesfully updated flights");
+      console.log("successfully updated flights");
     } catch (error) {
       console.error("Error fetching flights:", error);
     }
@@ -75,16 +75,21 @@ export const FlightsProvider: React.FC<FlightsProviderProps> = ({
   }, [chosenAirport, flights]);
 
   /**
-   * Filter flights based on search input
+   * Filter flights based on search input and get unique airports
    */
   useEffect(() => {
-    console.log(`filter flights based on the following input ${searchInput}`);
+    console.log(`filter flights based on the following input: ${searchInput}`);
 
     if (searchInput.length >= 3) {
-      const filtered = flights.filter((flight) =>
-        flight.airport.toLowerCase().includes(searchInput.toLowerCase())
-      );
-      setSearchResults(filtered);
+      const filteredAirports = flights
+        .filter((flight) =>
+          flight.airport.toLowerCase().includes(searchInput.toLowerCase())
+        )
+        .map((flight) => flight.airport);
+
+      // Set unique airports
+      const uniqueAirports = Array.from(new Set(filteredAirports));
+      setSearchResults(uniqueAirports);
     } else {
       setSearchResults([]);
     }
