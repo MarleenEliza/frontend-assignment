@@ -4,9 +4,6 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"] // For using '@' as a path alias
-    },
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

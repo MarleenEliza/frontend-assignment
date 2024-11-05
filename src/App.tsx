@@ -1,5 +1,12 @@
+import Home from "components/templates/home";
+import { FlightsProvider } from "context/FlightsContext";
+
 function App() {
-  return <div className="bg-blue-800">test</div>;
+  return (
+    <FlightsProvider>
+      <Home />
+    </FlightsProvider>
+  );
 }
 
 export default App;
