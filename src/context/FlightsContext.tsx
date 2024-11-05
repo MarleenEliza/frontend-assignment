@@ -1,5 +1,11 @@
-import React, { createContext, useState, useEffect, ReactNode } from "react";
-import { Flight, GetFlightsResponse } from "@/types/flightsApiTypes";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useContext,
+} from "react";
+import { Flight, GetFlightsResponse } from "types/flightsApiTypes";
 
 /**
  * Context for Flights.
@@ -13,6 +19,7 @@ interface FlightsContextType {
   searchResults: Flight[];
   chosenAirport: string | null;
   setChosenAirport: (airport: string) => void;
+  searchInput: string;
   setSearchInput: (input: string) => void;
   sortFlightResults: (
     sortBy: "date" | "expectedTime",
@@ -24,9 +31,7 @@ interface FlightsContextType {
 /**
  * Context
  */
-export const FlightsContext = createContext<FlightsContextType | undefined>(
-  undefined
-);
+const FlightsContext = createContext<FlightsContextType | undefined>(undefined);
 
 /**
  * Provider
@@ -52,6 +57,7 @@ export const FlightsProvider: React.FC<FlightsProviderProps> = ({
       const response = await fetch("/data/flights.json");
       const data: GetFlightsResponse = await response.json();
       setFlights(data.flights);
+      console.log("succesfully updated flights");
     } catch (error) {
       console.error("Error fetching flights:", error);
     }
@@ -65,12 +71,15 @@ export const FlightsProvider: React.FC<FlightsProviderProps> = ({
       (flight) => flight.airport === chosenAirport
     );
     setFlightResults(filtered);
+    console.log("updated flightResults");
   }, [chosenAirport, flights]);
 
   /**
    * Filter flights based on search input
    */
   useEffect(() => {
+    console.log(`filter flights based on the following input ${searchInput}`);
+
     if (searchInput.length >= 3) {
       const filtered = flights.filter((flight) =>
         flight.airport.toLowerCase().includes(searchInput.toLowerCase())
@@ -109,6 +118,7 @@ export const FlightsProvider: React.FC<FlightsProviderProps> = ({
       value={{
         flightResults,
         searchResults,
+        searchInput,
         setChosenAirport,
         chosenAirport,
         setSearchInput,
@@ -119,4 +129,15 @@ export const FlightsProvider: React.FC<FlightsProviderProps> = ({
       {children}
     </FlightsContext.Provider>
   );
+};
+
+/**
+ * Hook for easier access
+ */
+export const useFlightsContext = () => {
+  const context = useContext(FlightsContext);
+  if (context === undefined) {
+    throw new Error("useFlightsContext must be used within a FlightsProvider");
+  }
+  return context;
 };
