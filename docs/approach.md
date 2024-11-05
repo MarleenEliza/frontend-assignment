@@ -167,12 +167,14 @@ I will also implement basic accesibility practicies:
 - Is there a certain design theme in mind? I have understood that there is a specific color scheme but what about fonts? What about the overall `feeling / atmosphere` we want to convey as Schiphol Group?
 - What will be the target devices and browsers? Should we support older versions of lets say Iphone 6 ? Am I even correct in assuming that this is an app meant for both phones and pcs?
 - Does customizability matter in this project? If speed is improtant but UI is not, using a UI framework like Material UI can someitmes be a good solution.
+- Am I correct in assuming that the flightnumber is the data most relevant to the target user? Based on my own experience, I want to see the flight number when looking at flights data of an airport, but this interpretation might not be correct. I would normally ask if we have any data on what our users WANT to see and use that information to shape my UI design.
 
 #### What I will assume for now
 
 - Focus on the current [main browsers](https://gs.statcounter.com/browser-market-share/), Google Chrome, Safari, Edge
 - Mobile first approach to ensure accessibility for travelers on the go.
 - Using TailwindCSS to support efficient, responsive design without limiting custom CSS adjustments. I realize that the assignment asks for to limit the usage of plugins, but I think the usage of TailwindCSS can be justified as it is a lightweight, highly customizable plugin that can greatly improve the development speed whilst maintaining a strong focus on UI.
+- I will assume that the target user is most interested in seeing the `flight number`.
 
 ### State management
 
@@ -215,7 +217,7 @@ I will not implement that in this app due to the time limit and scale, but norma
 1. write this README with thoughts and questions I would normally ask BEFORE coding.
 2. Decide on a simple UI and UX
 3. Plan component structure (see different docs file)
-4. Decide on state management and types with simple `flightTypes.ts` and `FlightsContext.tsx`
+4. Decide on state management and types with simple `flightsApiTypes.ts` and `FlightsContext.tsx`
 5. Code components according to atomic design
 6. Code functionalities with focus on strong UX
 7. Add UI with TailwindCSS
