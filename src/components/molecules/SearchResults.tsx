@@ -10,7 +10,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   onSelectResult,
 }) => {
   return (
-    <ul className="search-results">
+    <ul className="search-results border-4 border-morning-pink rounded-xl z-10 absolute top-100 left-10 w-[80%]">
       {results.length > 0 ? (
         results.map((result, index) => (
           <li key={index}>

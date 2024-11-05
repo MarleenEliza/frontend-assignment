@@ -18,7 +18,7 @@ const TextLink: React.FC<TextLinkProps> = ({
       href={href}
       aria-label={ariaLabel}
       target={target}
-      className="text-link"
+      className="underline"
       rel="noopener noreferrer"
     >
       {children}
